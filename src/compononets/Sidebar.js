@@ -6,7 +6,7 @@ const Sidebar = () => {
     return (
         <aside className="w-48 flex-shrink-0">
             <ul>
-                <NavLink to="/products" activeStyle>
+                <NavLink to="/" activeStyle>
                     All Products
                 </NavLink>
                 <NavLink to="/cart" activeStyle>
