@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Navbar from "../compononets/Navbar"
 import Main from "../compononets/Main";
+import Footer from "../compononets/Footer";
 
 function ShoppingHive() {
     return (
@@ -8,7 +9,7 @@ function ShoppingHive() {
             <Navbar />
             <Main />
 
-            {/*<Footer />*/}
+            <Footer />
         </div>
     );
 }
