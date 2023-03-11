@@ -38,6 +38,8 @@ const Products = () => {
             setIsSnackbarOpen(true);
             if (data.status === 'success')
                 setSnackbarMessage(name+' Added to Shopping Cart!');
+            else if (data.status === 'exists')
+                setSnackbarMessage(name+' has already been Added!');
             })
             .catch((err) => {
                 setIsSnackbarOpen(true);
