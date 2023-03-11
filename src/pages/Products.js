@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios'
 import ProductCard from "../ProductCard";
 
 const Products = () => {
@@ -27,7 +26,7 @@ const Products = () => {
     })
 
     return (
-        <section className="cards-list">
+        <section className="grid grid-cols-3 gap-3">
             {products.length ? cardData : errorMsg}
         </section>
     );

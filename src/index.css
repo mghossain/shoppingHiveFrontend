@@ -24,3 +24,25 @@ code {
   color: white;
   height: 6rem;
 }
+
+.card {
+  position: relative;
+  width: 190px;
+  font-size: small;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-left: 25px;
+}
+.card > img {
+  height: 65%;
+  border-radius: 9px;
+  margin-bottom: 9px;
+}
+.card-name {
+  font-size: medium;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Navbar from "../compononets/Navbar"
 import Main from "../compononets/Main";
 import Footer from "../compononets/Footer";
@@ -8,7 +8,6 @@ function ShoppingHive() {
         <div>
             <Navbar />
             <Main />
-
             <Footer />
         </div>
     );
