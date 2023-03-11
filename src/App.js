@@ -1,9 +1,12 @@
 import './App.css';
+import ShoppingHive from "./pages/ShoppingHive";
+
+
 
 function App() {
   return (
-      <div className="text-1xl font-bold underline">
-        Hello world!
+      <div>
+        <ShoppingHive />
       </div>
   );
 }
