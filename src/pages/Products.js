@@ -5,6 +5,7 @@ import Snackbar from '@mui/material/Snackbar';
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [errorMsg, setErrorMsg] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
     function handleCloseSnackbar() {
@@ -16,9 +17,11 @@ const Products = () => {
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data.data.data);
+                setIsLoading(false);
             })
             .catch((err) => {
                 setErrorMsg(err.message)
+                setIsLoading(false);
             });
     }, []);
 
@@ -56,7 +59,9 @@ const Products = () => {
 
     return (
         <section className="grid grid-cols-3 gap-3">
-            {products.length ? cardData : errorMsg}
+            {isLoading ? (
+                <p>Loading Products ...</p>
+            ) :(products.length ? cardData : errorMsg)}
             <Snackbar
                 open={isSnackbarOpen}
                 autoHideDuration={3000}
