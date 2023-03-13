@@ -45,7 +45,7 @@ const ShoppingCart = () => {
             {
                 isLoading ? (<p>Loading Shopping Cart ...</p>) :
                 (basket.length ? (
-                    <section className="grid grid-cols-3 gap-3">
+                    <section className="grid grid-cols-3 gap-3 mb-2">
                         {cardData}
                     </section>
                 ): "Add Some Products to Start Shopping" )

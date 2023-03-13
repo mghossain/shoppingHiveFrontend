@@ -9,7 +9,7 @@ const ProductCard = (props) => {
             <p className='card-name'>
                 {props.name}
             </p>
-            <p className='card-price'>
+            <p>
                 <strong>{props.price}$</strong>
             </p>
             <ButtonAddToCart props={props} handleClick={props.handleClick}/>

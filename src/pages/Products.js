@@ -58,7 +58,7 @@ const Products = () => {
     })
 
     return (
-        <section className="grid grid-cols-3 gap-3">
+        <section className="grid grid-cols-3 gap-3 mb-4">
             {isLoading ? (
                 <p>Loading Products ...</p>
             ) :(products.length ? cardData : errorMsg)}

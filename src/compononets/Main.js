@@ -9,13 +9,13 @@ import Assignment from "../pages/Assignment";
 
 const Main = () => {
     return (
-        <section className='py-16 px-2 max-w-5xl mx-auto'>
+        <section className='py-16 px-2 mb-6 max-w-5xl mx-auto'>
             <h1 className='font-bold text-lg mb-8 pb-2 border-b'>Shop All Products</h1>
             <div className='flex'>
                 <Router>
                     <Sidebar />
                     <main className='flex-1'>
-                        <div className='border border-gray-200 p-6 rounded-xl'>
+                        <div className='border border-gray-200 px-6 rounded-xl'>
                             <Routes>
                                 <Route path='/' element={<Products />} />
                                 <Route path='/cart' element={<ShoppingCart />} />

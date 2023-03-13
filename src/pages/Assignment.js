@@ -3,7 +3,7 @@ import React from 'react';
 const Assignment = () => {
     return (
         <div>
-            <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">
+            <h1 className="py-4 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">
                 Technical Assignment Full-Stack Engineer
             </h1>
 
@@ -25,7 +25,6 @@ const Assignment = () => {
                 Please send us (jobs@madewithlove.com) an email when you are ready with the assignment.
                 Please mention your name, Github username and a link to what we need to review.
             </p>
-
 
         </div>
     );
