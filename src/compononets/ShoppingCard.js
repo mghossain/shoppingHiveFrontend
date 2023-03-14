@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonRemoveFromCart from "./ButtonRemoveFromCart";
 
 const ShoppingCard = (props) => {
     const img = require("../images/" + props.product_id + '.jpg')
@@ -11,6 +12,7 @@ const ShoppingCard = (props) => {
             <p className='card-price'>
                 <strong>{props["product"].price}$</strong>
             </p>
+            <ButtonRemoveFromCart props={props} handleClick={props.handleClick}/>
         </div>
     );
 };

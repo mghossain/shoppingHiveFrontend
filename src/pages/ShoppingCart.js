@@ -31,6 +31,31 @@ const ShoppingCart = () => {
             });
     };
 
+    const handleRemoveFromCart = (e, id, name, product_id) => {
+        e.preventDefault();
+        fetch('http://127.0.0.1:8000/api/basket', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                ids: [{'id': id, 'product_id': product_id}],
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setIsSnackbarOpen(true);
+                if (data.status === 'success') {
+                    setSnackbarMessage(name+ ' was Removed Successfully!');
+                    fetchData()
+                }
+            })
+            .catch((err) => {
+                setIsSnackbarOpen(true);
+                setSnackbarMessage('Error Removing '+name+' from the Cart!');
+            });
+    };
+
     const handleRemove = (e) => {
         e.preventDefault();
         fetch('http://127.0.0.1:8000/api/basket', {
@@ -86,11 +111,16 @@ const ShoppingCart = () => {
         (total, product) => total + product['product'].price, 0
     );
 
-    const cartIds = basket.map((product) => product.id);
+    const cartIds = basket.map((item) => {
+        return {
+            id: item.id,
+            product_id: item.product_id
+    }
+    });
 
 
     const cardData = basket.map(card => {
-        return <ShoppingCard
+        return <ShoppingCard handleClick={handleRemoveFromCart}
                 key={card.id}
                 {...card}
         />
