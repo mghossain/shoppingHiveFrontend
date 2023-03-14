@@ -70,11 +70,11 @@ class SalesStat extends Component {
         try {
             return this.state.stats.map((item) => {
                 return (
-                    <tr className="align-items-center justify-content-center">
-                        <td className="text-xs font-bold ">{item["product"].name}</td>
-                        <td className="text-xs">{item.addedCount}</td>
-                        <td className="text-xs">{item.removedCount}</td>
-                        <td className="text-xs">{item.purchasedCount}</td>
+                    <tr>
+                        <td className="text-xs font-bold">{item["product"].name}</td>
+                        <td className="text-xs text-center">{item.addedCount}</td>
+                        <td className="text-xs text-center">{item.removedCount}</td>
+                        <td className="text-xs text-center">{item.purchasedCount}</td>
                     </tr>
                 );
             });
