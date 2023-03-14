@@ -15,6 +15,10 @@ const ShoppingCart = () => {
     }
 
     useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
         fetch('http://127.0.0.1:8000/api/basket')
             .then((res) => res.json())
             .then((data) => {
@@ -25,12 +29,64 @@ const ShoppingCart = () => {
                 setErrorMsg(err.message)
                 setIsLoading(false);
             });
-    }, []);
+    };
+
+    const handleRemove = (e) => {
+        e.preventDefault();
+        fetch('http://127.0.0.1:8000/api/basket', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                ids: cartIds,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setIsSnackbarOpen(true);
+                if (data.status === 'success') {
+                    setSnackbarMessage('Shopping Cart Emptied Successfully!');
+                    fetchData()
+                }
+            })
+            .catch((err) => {
+                setIsSnackbarOpen(true);
+                setSnackbarMessage('Error Emptying the Cart!');
+            });
+    };
+
+    const handleCheckout = (e) => {
+        e.preventDefault();
+        fetch('http://127.0.0.1:8000/api/basket', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                product_id: '',
+                stat_type: 'checkout'
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setIsSnackbarOpen(true);
+                if (data.status === 'success')
+                    setSnackbarMessage(' Added to Shopping Cart!');
+                else if (data.status === 'exists')
+                    setSnackbarMessage(' has already been Added!');
+            })
+            .catch((err) => {
+                setIsSnackbarOpen(true);
+                setSnackbarMessage('Error Adding item to Cart!');
+            });
+    };
 
     const totalPrice = basket.reduce(
-        (total, product) => total + product['product'].price,
-        0
+        (total, product) => total + product['product'].price, 0
     );
+
+    const cartIds = basket.map((product) => product.id);
 
 
     const cardData = basket.map(card => {
@@ -51,7 +107,11 @@ const ShoppingCart = () => {
                 ): "Add Some Products to Start Shopping" )
             }
 
-            {(!isLoading && basket.length) ? <ShoppingButtons totalPrice={totalPrice}/> : ''}
+            {(!isLoading && basket.length) ?
+                <ShoppingButtons
+                                totalPrice={totalPrice}
+                                handleRemove={handleRemove}
+                                handleCheckout={handleCheckout}/> : ''}
 
             <Snackbar
                 open={isSnackbarOpen}
