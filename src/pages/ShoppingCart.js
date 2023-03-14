@@ -61,7 +61,7 @@ const ShoppingCart = () => {
         fetch('http://127.0.0.1:8000/api/basket', {
             method: 'DELETE',
             body: JSON.stringify({
-                product_id: '',
+                ids: cartIds,
                 stat_type: 'checkout'
             }),
             headers: {
@@ -71,14 +71,14 @@ const ShoppingCart = () => {
             .then((res) => res.json())
             .then((data) => {
                 setIsSnackbarOpen(true);
-                if (data.status === 'success')
-                    setSnackbarMessage(' Added to Shopping Cart!');
-                else if (data.status === 'exists')
-                    setSnackbarMessage(' has already been Added!');
+                if (data.status === 'success') {
+                    setSnackbarMessage('Thank you for your Purchase!');
+                    fetchData()
+                }
             })
             .catch((err) => {
                 setIsSnackbarOpen(true);
-                setSnackbarMessage('Error Adding item to Cart!');
+                setSnackbarMessage('Error Checking Out!');
             });
     };
 
