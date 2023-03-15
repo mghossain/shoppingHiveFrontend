@@ -31,7 +31,8 @@ const Products = () => {
                 product_id: id,
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
         })
             .then((res) => res.json())
@@ -39,12 +40,12 @@ const Products = () => {
             setIsSnackbarOpen(true);
             if (data.status === 'success')
                 setSnackbarMessage(name+' Added to Shopping Cart!');
-            else if (data.status === 'exists')
+            if (data.hasOwnProperty('errors'))
                 setSnackbarMessage(name+' has already been Added!');
             })
             .catch((err) => {
-                setIsSnackbarOpen(true);
                 setSnackbarMessage('Error Adding item to Cart!');
+                setIsSnackbarOpen(true);
             });
     };
 

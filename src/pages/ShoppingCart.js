@@ -39,7 +39,8 @@ const ShoppingCart = () => {
                 ids: [{'id': id, 'product_id': product_id}],
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
         })
             .then((res) => res.json())
@@ -49,6 +50,8 @@ const ShoppingCart = () => {
                     setSnackbarMessage(name+ ' was Removed Successfully!');
                     fetchData()
                 }
+                else if (data.hasOwnProperty('errors'))
+                    setSnackbarMessage(data.message);
             })
             .catch((err) => {
                 setIsSnackbarOpen(true);
@@ -64,7 +67,8 @@ const ShoppingCart = () => {
                 ids: cartIds,
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
         })
             .then((res) => res.json())
@@ -74,6 +78,8 @@ const ShoppingCart = () => {
                     setSnackbarMessage('Shopping Cart Emptied Successfully!');
                     fetchData()
                 }
+                else if (data.hasOwnProperty('errors'))
+                    setSnackbarMessage(data.message);
             })
             .catch((err) => {
                 setIsSnackbarOpen(true);
@@ -90,7 +96,8 @@ const ShoppingCart = () => {
                 stat_type: 'checkout'
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
         })
             .then((res) => res.json())
@@ -100,6 +107,8 @@ const ShoppingCart = () => {
                     setSnackbarMessage('Thank you for your Purchase!');
                     fetchData()
                 }
+                else if (data.hasOwnProperty('errors'))
+                    setSnackbarMessage(data.message);
             })
             .catch((err) => {
                 setIsSnackbarOpen(true);
