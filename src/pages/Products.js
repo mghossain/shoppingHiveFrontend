@@ -4,7 +4,6 @@ import Snackbar from '@mui/material/Snackbar';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-    const [errorMsg, setErrorMsg] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
@@ -19,8 +18,7 @@ const Products = () => {
                 setProducts(data.data.data);
                 setIsLoading(false);
             })
-            .catch((err) => {
-                setErrorMsg(err.message)
+            .catch((data) => {
                 setIsLoading(false);
             });
     }, []);
@@ -60,8 +58,8 @@ const Products = () => {
     return (
         <section className="grid grid-cols-3 gap-3 mb-4">
             {isLoading ? (
-                <p>Loading Products ...</p>
-            ) :(products.length ? cardData : errorMsg)}
+                <div className='font-semibold'>Loading Products ...</div>
+            ) :(products.length ? cardData : (<div className='font-semibold'>Please run:<br/> sail artisan migrate --seed</div>) )}
             <Snackbar
                 open={isSnackbarOpen}
                 autoHideDuration={3000}

@@ -129,12 +129,12 @@ const ShoppingCart = () => {
     return (
         <div>
             {
-                isLoading ? (<p>Loading Shopping Cart ...</p>) :
+                isLoading ? (<div className='font-semibold'>Loading Shopping Cart ...</div>) :
                 (basket.length ? (
                     <section className="grid grid-cols-3 gap-3 mb-2">
                         {cardData}
                     </section>
-                ): "Add Some Products to Start Shopping" )
+                ): (<div className='font-semibold'>Add Some Products to Start Shopping</div>) )
             }
 
             {(!isLoading && basket.length) ?
